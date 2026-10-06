@@ -82,7 +82,7 @@ li + li { margin-top: 0.3em; }
 .wordmark .accent { color: var(--brand); }
 .wordmark-mark { width: 30px; height: 30px; flex: none; }
 .topbar-note { margin-left: auto; color: var(--muted); font-size: 0.82rem; }
-.menu-button { display: none; }
+.topbar .menu-button { display: none; }
 
 .shell { display: grid; grid-template-columns: var(--sidebar-w) minmax(0, 1fr); min-height: calc(100vh - var(--topbar-h)); }
 .sidebar {
@@ -122,7 +122,7 @@ main:focus { outline: none; }
 
 @media (max-width: 900px) {
   .shell { grid-template-columns: minmax(0, 1fr); }
-  .menu-button { display: inline-flex; }
+  .topbar .menu-button { display: inline-flex; }
   .topbar-note { display: none; }
   .sidebar {
     position: fixed; inset: var(--topbar-h) 0 auto 0; height: auto; max-height: calc(100vh - var(--topbar-h));
