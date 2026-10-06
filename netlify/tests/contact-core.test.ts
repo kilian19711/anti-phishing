@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { createResendProvider, handleContact, sanitizeLine, type MailProvider } from './contact-core';
+import { createResendProvider, handleContact, sanitizeLine, type MailProvider } from '../lib/contact-core';
 
 const config = { recipient: 'team@empfaenger.example', from: 'kontakt@phishlab.example', apiKey: 'test-key' };
 const NOW = 1_000_000;

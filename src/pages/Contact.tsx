@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { IconAlert, IconMail } from '../components/Icons';
 import { Notice, PageHeader } from '../components/ui';
-import { LIMITS, TOPICS, validateContact, type FieldErrors } from '../../netlify/functions/lib/contact-core';
+import { LIMITS, TOPICS, validateContact, type FieldErrors } from '../../netlify/lib/contact-core';
 
 export const CONTACT_ENDPOINT = '/.netlify/functions/contact';
 type Status = 'idle' | 'sending' | 'sent' | 'error';

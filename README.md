@@ -59,7 +59,7 @@ src/
   test/                    Integrationstests der Hauptabläufe
 netlify/functions/
   contact.ts               Netlify Function (Einstiegspunkt)
-  lib/contact-core.ts      Validierung, Provider-Schnittstelle, Resend-Provider, Handler (testbar)
+  ../lib/contact-core.ts   Validierung, Provider-Schnittstelle, Resend-Provider, Handler (testbar)
 netlify.toml               Build, SPA-Fallback, Sicherheits-Header (CSP u. a.)
 .env.example               Variablennamen für das Kontaktformular (leer)
 ```

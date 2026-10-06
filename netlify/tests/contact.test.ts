@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import handler from './contact';
+import handler from '../functions/contact';
 
 afterEach(() => vi.unstubAllEnvs());
 

@@ -1,4 +1,4 @@
-import { handleContact } from './lib/contact-core';
+import { handleContact } from '../lib/contact-core';
 
 /**
  * Netlify Function: POST /.netlify/functions/contact
