@@ -7,3 +7,4 @@ dist
 *.tsbuildinfo
 coverage
 screenshots-tmp
+phishlab-netlify-upload.zip
