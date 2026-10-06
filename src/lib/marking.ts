@@ -7,7 +7,8 @@ export interface Segment {
 }
 
 export function splitSentences(paragraph: string): string[] {
-  return paragraph.split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ„(0-9])/u).filter(Boolean);
+  // Kein Satzende nach Ziffern („im 2. OG“) oder Abkürzungen wie „z. B.“
+  return paragraph.split(/(?<=[^\d\s.][^\s.]*[.!?])(?<!\b[a-zA-Z][.])\s+(?=[A-ZÄÖÜ„(])/u).filter(Boolean);
 }
 
 export function bodySegments(scenario: Scenario): Segment[][] {

@@ -28,3 +28,11 @@ describe('Hinweise markieren', () => {
     expect(registeredDomain('kaputt')).toBe('');
   });
 });
+
+describe('splitSentences', () => {
+  it('trennt nicht nach Ordnungszahlen oder Abkürzungen', async () => {
+    const { splitSentences } = await import('./marking');
+    expect(splitSentences('die heizung im 2. OG wird entlüftet. Bitte warten.')).toEqual(['die heizung im 2. OG wird entlüftet.', 'Bitte warten.']);
+    expect(splitSentences('Nutzen Sie z. B. Passkeys. Danke!')).toEqual(['Nutzen Sie z. B. Passkeys.', 'Danke!']);
+  });
+});
