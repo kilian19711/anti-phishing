@@ -6,3 +6,4 @@ dist
 .netlify
 *.tsbuildinfo
 coverage
+screenshots-tmp
