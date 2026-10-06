@@ -29,14 +29,5 @@ export interface AppState {
   round: RoundState | null;
   lastOrder: string[];
   customScenarios: Scenario[];
-  persist: boolean;
-  storageAvailable: boolean;
 }
 
-/** Was bei aktivierter Speicherung lokal im Browser liegt – bewusst minimal. */
-export interface PersistedData {
-  version: 1;
-  savedAt: string;
-  history: Pick<AnswerRecord, 'scenarioId' | 'chosen' | 'correct' | 'at'>[];
-  customScenarios: Scenario[];
-}

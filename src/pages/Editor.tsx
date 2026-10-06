@@ -81,7 +81,7 @@ export default function Editor() {
       if (editing && editing !== scenario.id) dispatch({ type: 'deleteCustomScenario', id: editing });
       dispatch({ type: 'saveCustomScenario', scenario });
       setEditing(scenario.id);
-      setMessage({ kind: 'success', text: `Szenario „${scenario.title}“ gespeichert. Es erscheint jetzt in der Bibliothek und im Training${state.persist ? ' und wird auf diesem Gerät gespeichert' : ' (nur in dieser Sitzung)'}.` });
+      setMessage({ kind: 'success', text: `Szenario „${scenario.title}“ gespeichert. Es erscheint jetzt in der Bibliothek und im Training (nur in dieser Sitzung).` });
     }
     setTimeout(() => summaryRef.current?.focus(), 0);
   };
@@ -132,7 +132,7 @@ export default function Editor() {
         <p>Erstellen und bearbeiten Sie eigene, <strong>synthetische</strong> Übungsfälle. Verwenden Sie nur erfundene Namen und <code>.example</code>-Adressen.</p>
       </PageHeader>
       <Notice kind="warning" title="Lokale Demo-Funktion">
-        <p>Der Editor hat kein Backend und keine Benutzerverwaltung. Eigene Szenarien liegen nur in Ihrem Browser ({state.persist ? 'dauerhaftes Speichern ist aktiv' : 'nur bis zum Schließen des Tabs – dauerhaftes Speichern können Sie unter „Fortschritt“ aktivieren'}) und sind für niemanden sonst sichtbar.</p>
+        <p>Der Editor hat kein Backend und keine Benutzerverwaltung. Eigene Szenarien liegen nur in Ihrem Browser (nur bis zum Neuladen oder Schließen der Seite – sichern Sie sie bei Bedarf über „Eigene Szenarien exportieren“) und sind für niemanden sonst sichtbar.</p>
       </Notice>
 
       <div ref={summaryRef} tabIndex={-1} aria-live="polite" style={{ marginTop: 16 }}>

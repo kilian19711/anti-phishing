@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Notice, PageHeader } from '../components/ui';
 
 export default function Privacy() {
@@ -21,19 +20,17 @@ export default function Privacy() {
       </ul>
 
       <h2 id="fortschritt">Trainingsfortschritt</h2>
-      <p><strong>Standard:</strong> Ihre Antworten liegen nur im Arbeitsspeicher des geöffneten Browser-Tabs. Beim Schließen oder Neuladen sind sie gelöscht.</p>
-      <p><strong>Optional:</strong> Unter <Link to="/fortschritt">Fortschritt</Link> können Sie ausdrücklich das Speichern auf diesem Gerät aktivieren. Dann speichert PhishLab im lokalen Speicher (localStorage) Ihres Browsers unter dem Schlüssel <code>phishlab:v1</code>: Szenario-ID, Ihre Antwort, richtig/falsch und Zeitpunkt je Übung sowie Ihre selbst erstellten Editor-Szenarien. Diese Daten verlassen Ihr Gerät nicht.</p>
-      <p><strong>Löschen:</strong> Auf der Seite „Fortschritt“ über „Gespeicherte Daten löschen“ oder über die Browser-Einstellungen („Websitedaten löschen“). Dort können Sie die Daten auch ansehen und als JSON exportieren.</p>
+      <p>Ihre Antworten liegen nur im Arbeitsspeicher des geöffneten Browser-Tabs. PhishLab speichert nichts im Browser (kein localStorage, keine Cookies) und überträgt nichts an einen Server. Beim Neuladen oder Schließen der Seite ist alles gelöscht und das Training beginnt wieder bei null.</p>
 
       <h2 id="editor">Szenario-Editor</h2>
-      <p>Eigene Szenarien liegen wie der Fortschritt nur im Arbeitsspeicher bzw. – nach Aktivierung – im lokalen Speicher Ihres Browsers. Import und Export laufen lokal über Dateien auf Ihrem Gerät. Bitte tragen Sie ausschließlich erfundene Inhalte ein.</p>
+      <p>Eigene Szenarien liegen wie der Fortschritt nur im Arbeitsspeicher und sind nach dem Neuladen weg. Import und Export laufen lokal über Dateien auf Ihrem Gerät. Bitte tragen Sie ausschließlich erfundene Inhalte ein.</p>
 
       <h2 id="kontakt">Kontaktformular</h2>
       <p>Nur wenn Sie das Kontaktformular bewusst absenden, werden die eingegebenen Daten übertragen:</p>
       <ul>
         <li><strong>Welche Daten:</strong> Name (optional), E-Mail-Adresse für die Antwort, Thema, Betreff, Nachricht.</li>
         <li><strong>Zweck:</strong> ausschließlich die Bearbeitung und Beantwortung Ihrer Anfrage.</li>
-        <li><strong>Weg:</strong> Ihr Browser sendet die Daten verschlüsselt (HTTPS) an eine Serverfunktion (Netlify Function) beim Hoster Netlify. Diese gibt die Nachricht an den E-Mail-Dienstleister <strong>Resend</strong> weiter, der sie an das konfigurierte PhishLab-Postfach zustellt. Ihre Adresse wird als Antwortadresse gesetzt.</li>
+        <li><strong>Weg:</strong> Ihr Browser sendet die Daten verschlüsselt (HTTPS) an eine Serverfunktion (Netlify Function) beim Hoster Netlify. Diese gibt die Nachricht an den E-Mail-Dienstleister <strong>Resend</strong> weiter, der sie an das konfigurierte Postfach des PhishLab-Projektteams bei L-mobile zustellt. Ihre Adresse wird als Antwortadresse gesetzt.</li>
         <li><strong>Speicherung:</strong> PhishLab speichert Anfragen nicht in einer Datenbank. Die Serverfunktion protokolliert nur anonyme Ereignisse (z. B. „versendet“ oder „Fehler“), niemals Nachrichtentext oder E-Mail-Adresse. Die E-Mail liegt danach im Empfängerpostfach und wird nach Erledigung gelöscht. Netlify und Resend können technisch bedingt eigene Protokolle (z. B. Zustellprotokolle) führen; deren Aufbewahrung richtet sich nach den Bedingungen der Anbieter und ist vom Betreiber zu prüfen.</li>
         <li><strong>Keine automatische Antwort</strong> und keine Weitergabe zu Werbezwecken.</li>
         <li><strong>Spam-Schutz:</strong> ein unsichtbares Feld und eine Mindest-Ausfüllzeit – ohne externe Captcha-Dienste.</li>

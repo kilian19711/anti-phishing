@@ -20,7 +20,7 @@ export default function Dashboard() {
     <div className="page">
       <section className="hero" aria-labelledby="hero-title">
         <div>
-          <span className="eyebrow">Willkommen bei PhishLab</span>
+          <span className="eyebrow">PhishLab · Ausbildungsprojekt bei L-mobile</span>
           <h1 id="hero-title" tabIndex={-1}>Phishing erkennen. <span className="grad">Sicher handeln.</span></h1>
           <p className="lead">
             Üben Sie mit vollständig simulierten E-Mails, SMS und Chats, verdächtige und echte Nachrichten zu unterscheiden.
@@ -59,9 +59,7 @@ export default function Dashboard() {
           </div>
         </div>
         <p className="small muted" style={{ marginTop: 12 }}>
-          {state.persist
-            ? 'Dauerhaftes Speichern auf diesem Gerät ist aktiviert. Verwalten oder löschen können Sie die Daten unter „Fortschritt“.'
-            : 'Diese Werte liegen nur im Arbeitsspeicher dieses Tabs und verschwinden beim Schließen oder Neuladen.'}
+          {'Diese Werte gelten nur für diese Sitzung. Beim Neuladen der Seite startet alles wieder bei null.'}
         </p>
       </section>
 

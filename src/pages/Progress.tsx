@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IconDownload, IconLock, IconTrash } from '../components/Icons';
+import { IconLock } from '../components/Icons';
 import { Notice, PageHeader, ProgressBar } from '../components/ui';
 import { DIFFICULTY_IDS, rate, statsBy, TOPIC_IDS } from '../lib/stats';
 import { useApp } from '../state/AppState';
@@ -19,18 +19,12 @@ export function downloadText(filename: string, text: string) {
 }
 
 export default function Progress() {
-  const { state, dispatch, pool, enablePersist, disablePersistAndDelete, exportData } = useApp();
+  const { state, dispatch, pool } = useApp();
   const [message, setMessage] = useState<{ kind: 'success' | 'error' | 'info'; text: string } | null>(null);
-  const [confirm, setConfirm] = useState<'delete' | 'reset' | null>(null);
-  const [showData, setShowData] = useState(false);
+  const [confirm, setConfirm] = useState<'reset' | null>(null);
   const byTopic = statsBy(state.history, pool, (s) => s.topic, TOPIC_IDS);
   const byDiff = statsBy(state.history, pool, (s) => s.difficulty, DIFFICULTY_IDS);
 
-  const activate = () => {
-    const ok = enablePersist();
-    setMessage(ok ? { kind: 'success', text: 'Dauerhaftes Speichern ist aktiviert. Ihr Fortschritt wird ab jetzt in diesem Browser auf diesem Gerät gespeichert.' }
-      : { kind: 'error', text: 'Speichern ist in diesem Browser nicht möglich (z. B. privater Modus oder blockierter Speicher). Ihr Fortschritt bleibt nur für diese Sitzung erhalten.' });
-  };
 
   return (
     <div className="page">
@@ -76,45 +70,10 @@ export default function Progress() {
       )}
 
       <section className="card" aria-labelledby="speichern" style={{ marginTop: 24 }}>
-        <h2 id="speichern" style={{ marginTop: 0 }}><IconLock width={20} height={20} style={{ verticalAlign: 'middle' }} /> Speichern auf diesem Gerät</h2>
+        <h2 id="speichern" style={{ marginTop: 0 }}><IconLock width={20} height={20} style={{ verticalAlign: 'middle' }} /> Was wird gespeichert?</h2>
         {message && <div style={{ marginBottom: 12 }}><Notice kind={message.kind} role="status"><p>{message.text}</p></Notice></div>}
-        {!state.storageAvailable && (
-          <Notice kind="warning" title="Browserspeicher nicht verfügbar"><p>Ihr Browser erlaubt keine lokale Speicherung. PhishLab funktioniert trotzdem vollständig – der Fortschritt gilt dann nur für diese Sitzung.</p></Notice>
-        )}
-        {state.storageAvailable && !state.persist && (
-          <>
-            <p><strong>Standard: nichts wird gespeichert.</strong> Ihr Fortschritt liegt nur im Arbeitsspeicher dieses Tabs und ist nach dem Schließen oder Neuladen weg.</p>
-            <p>Wenn Sie möchten, können Sie das dauerhafte Speichern aktivieren. Dann legt PhishLab im <em>lokalen Speicher (localStorage) dieses Browsers</em> ab:</p>
-            <ul>
-              <li>je beantworteter Übung: Szenario-ID, Ihre Antwort, ob sie richtig war, und den Zeitpunkt</li>
-              <li>Ihre im Editor erstellten eigenen Szenarien</li>
-            </ul>
-            <p>Es werden keine Namen, keine E-Mail-Adressen und keine Gerätekennungen gespeichert, und nichts wird an einen Server übertragen. Sie können die Daten jederzeit hier ansehen, exportieren und vollständig löschen.</p>
-            <button type="button" className="btn btn-accent" onClick={activate}>Dauerhaftes Speichern aktivieren</button>
-          </>
-        )}
-        {state.persist && (
-          <>
-            <p><strong>Dauerhaftes Speichern ist aktiv.</strong> Gespeichert sind {state.history.length} Antworten und {state.customScenarios.length} eigene Szenarien – nur in diesem Browser auf diesem Gerät.</p>
-            <div className="row">
-              <button type="button" className="btn" aria-expanded={showData} aria-controls="gespeicherte-daten" onClick={() => setShowData((v) => !v)}>{showData ? 'Daten ausblenden' : 'Gespeicherte Daten anzeigen'}</button>
-              <button type="button" className="btn" onClick={() => downloadText(`phishlab-daten-${new Date().toISOString().slice(0, 10)}.json`, exportData())}><IconDownload />Als JSON exportieren</button>
-              <button type="button" className="btn btn-danger" onClick={() => setConfirm('delete')}><IconTrash />Gespeicherte Daten löschen</button>
-            </div>
-            {showData && <pre id="gespeicherte-daten" className="card mono small" style={{ overflowX: 'auto', maxHeight: 320, marginTop: 12 }}>{exportData()}</pre>}
-          </>
-        )}
-        {confirm === 'delete' && (
-          <div style={{ marginTop: 12 }}>
-            <Notice kind="warning" title="Wirklich löschen?">
-              <p>Alle auf diesem Gerät gespeicherten PhishLab-Daten werden entfernt und das dauerhafte Speichern deaktiviert. Ihr Fortschritt dieser Sitzung bleibt bis zum Schließen des Tabs sichtbar.</p>
-              <div className="row">
-                <button type="button" className="btn btn-danger" onClick={() => { disablePersistAndDelete(); setConfirm(null); setMessage({ kind: 'success', text: 'Die gespeicherten Daten wurden aus diesem Browser gelöscht.' }); }}>Ja, endgültig löschen</button>
-                <button type="button" className="btn" onClick={() => setConfirm(null)}>Abbrechen</button>
-              </div>
-            </Notice>
-          </div>
-        )}
+        <p><strong>Nichts dauerhaft.</strong> Ihr Fortschritt liegt nur im Arbeitsspeicher dieses Browser-Tabs. Beim Neuladen oder Schließen der Seite beginnt alles wieder bei null – so kann jede Person am selben Gerät neu üben.</p>
+        <p className="small muted" style={{ marginBottom: 0 }}>Es werden keine Daten im Browser gespeichert und nichts an einen Server übertragen.</p>
       </section>
 
       {state.history.length > 0 && (
@@ -124,7 +83,7 @@ export default function Progress() {
             <button type="button" className="btn" onClick={() => setConfirm('reset')}>Alle Antworten zurücksetzen</button>
           ) : (
             <div className="row">
-              <span>Alle Antworten verwerfen{state.persist ? ' (auch die gespeicherten)' : ''}?</span>
+              <span>Alle Antworten dieser Sitzung verwerfen?</span>
               <button type="button" className="btn btn-danger" onClick={() => { dispatch({ type: 'clearHistory' }); setConfirm(null); setMessage({ kind: 'success', text: 'Ihr Fortschritt wurde zurückgesetzt.' }); }}>Ja, zurücksetzen</button>
               <button type="button" className="btn" onClick={() => setConfirm(null)}>Abbrechen</button>
             </div>

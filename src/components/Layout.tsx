@@ -52,7 +52,7 @@ export function Layout({ children }: { children: ReactNode }) {
         </button>
         <Link to="/" className="wordmark" aria-label="PhishLab – zur Startseite">
           <Logo className="wordmark-mark" />
-          <span>Phish<span className="accent">Lab</span></span>
+          <span className="wordmark-text"><span>Phish<span className="accent">Lab</span></span><span className="wordmark-sub">Ausbildungsprojekt bei L-mobile</span></span>
         </Link>
         <span className="topbar-note">Lernportal mit simulierten Nachrichten · keine echten Daten</span>
       </header>
@@ -74,7 +74,7 @@ export function Layout({ children }: { children: ReactNode }) {
             <li><NavLink to="/ueber" className="nav-link">Über das Projekt</NavLink></li>
           </ul>
           <p className="sidebar-foot">
-            Ihr Fortschritt bleibt standardmäßig nur in diesem Browser-Tab und verschwindet beim Schließen.
+            Beim Neuladen startet alles wieder bei null – nichts wird gespeichert.
           </p>
         </nav>
         <main id="main" ref={mainRef} tabIndex={-1}>
@@ -82,7 +82,7 @@ export function Layout({ children }: { children: ReactNode }) {
         </main>
         <footer className="site-footer">
           <p style={{ margin: 0 }}>
-            PhishLab · Unabhängiges Lern- und Portfolio-Projekt – kein offizielles L-mobile-Produkt.
+            PhishLab · Ausbildungsprojekt bei L-mobile – Lern- und Portfolio-Projekt, kein offizielles L-mobile-Produkt.
           </p>
           <nav aria-label="Rechtliches und Informationen">
             <ul>

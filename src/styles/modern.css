@@ -167,3 +167,6 @@ input[type='text'], input[type='email'], input[type='search'], select, textarea 
   .mc-time { grid-column: 2; }
   .mc-search { display: none; }
 }
+
+.wordmark-text { display: grid; line-height: 1.1; }
+.wordmark-sub { font-size: 0.7rem; font-weight: 500; color: var(--muted); letter-spacing: 0.01em; }

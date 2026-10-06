@@ -6,15 +6,14 @@ import { parseMarkdown, tableOfContents } from '../lib/markdown';
 const articleIds = articles.map((a) => a.id);
 
 describe('Szenario-Pool', () => {
-  it('enthält 60 bis 70 Szenarien', () => {
-    expect(builtInScenarios.length).toBeGreaterThanOrEqual(60);
-    expect(builtInScenarios.length).toBeLessThanOrEqual(70);
+  it('enthält 110 Szenarien (60 Basisfälle + 50 Erweiterung)', () => {
+    expect(builtInScenarios.length).toBe(110);
   });
 
   it('ist ausgewogen zwischen Phishing und legitim', () => {
     const phishing = builtInScenarios.filter((s) => s.classification === 'phishing').length;
     const legit = builtInScenarios.length - phishing;
-    expect(Math.abs(phishing - legit)).toBeLessThanOrEqual(4);
+    expect(phishing).toBe(legit);
   });
 
   it('hat eindeutige IDs und eindeutige Titel/Betreffzeilen', () => {

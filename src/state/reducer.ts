@@ -1,6 +1,6 @@
 import type { Classification, Scenario } from '../types/content';
 import type { RoundFilter, RoundMode } from '../lib/quiz';
-import type { AnswerRecord, AppState, Confidence, PersistedData } from './types';
+import type { AnswerRecord, AppState, Confidence } from './types';
 
 export type Action =
   | { type: 'startRound'; mode: RoundMode; filter: RoundFilter; order: string[]; markMode: boolean; now: number }
@@ -9,15 +9,13 @@ export type Action =
   | { type: 'goTo'; index: number }
   | { type: 'finishRound' }
   | { type: 'abortRound' }
-  | { type: 'setPersist'; persist: boolean }
-  | { type: 'loadPersisted'; data: PersistedData }
   | { type: 'clearHistory' }
   | { type: 'saveCustomScenario'; scenario: Scenario }
   | { type: 'deleteCustomScenario'; id: string }
   | { type: 'importCustomScenarios'; scenarios: Scenario[] };
 
-export function initialState(storageAvailable: boolean): AppState {
-  return { history: [], round: null, lastOrder: [], customScenarios: [], persist: false, storageAvailable };
+export function initialState(): AppState {
+  return { history: [], round: null, lastOrder: [], customScenarios: [] };
 }
 
 export function reducer(state: AppState, action: Action): AppState {
@@ -66,15 +64,6 @@ export function reducer(state: AppState, action: Action): AppState {
       return state.round ? { ...state, round: { ...state.round, finished: true } } : state;
     case 'abortRound':
       return { ...state, round: null };
-    case 'setPersist':
-      return { ...state, persist: action.persist && state.storageAvailable };
-    case 'loadPersisted':
-      return {
-        ...state,
-        persist: true,
-        history: action.data.history.map((h) => ({ ...h })),
-        customScenarios: action.data.customScenarios,
-      };
     case 'clearHistory':
       return { ...state, history: [] };
     case 'saveCustomScenario': {
@@ -95,16 +84,3 @@ export function reducer(state: AppState, action: Action): AppState {
   }
 }
 
-export function toPersisted(state: AppState, now = new Date()): PersistedData {
-  return {
-    version: 1,
-    savedAt: now.toISOString(),
-    history: state.history.map(({ scenarioId, chosen, correct, at }) => ({ scenarioId, chosen, correct, at })),
-    customScenarios: state.customScenarios,
-  };
-}
-
-export function isPersistedData(value: unknown): value is PersistedData {
-  const v = value as PersistedData;
-  return Boolean(v && v.version === 1 && Array.isArray(v.history) && Array.isArray(v.customScenarios));
-}

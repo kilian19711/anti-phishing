@@ -79,7 +79,7 @@ export default function Contact() {
   return (
     <div className="page-narrow">
       <PageHeader title="Kontakt">
-        <p>Fragen, Fehler oder Feedback zu PhishLab? Schreiben Sie uns. Pflichtfelder sind mit <span className="required">*</span> gekennzeichnet.</p>
+        <p>Fragen, Fehler oder Feedback zu PhishLab? Schreiben Sie dem Projektteam bei L-mobile. Pflichtfelder sind mit <span className="required">*</span> gekennzeichnet.</p>
       </PageHeader>
 
       {config === 'missing' && (
@@ -150,7 +150,7 @@ export default function Contact() {
         <div id="datenschutz-kurz" className="notice notice-info" style={{ marginTop: 20 }}>
           <IconMail />
           <div className="small">
-            <p><strong>Datenschutz in Kürze:</strong> Ihre Angaben werden erst beim Absenden übertragen – über eine Serverfunktion bei unserem Hoster Netlify an den E-Mail-Dienstleister Resend, der die Nachricht an das PhishLab-Postfach zustellt. Zweck ist ausschließlich die Beantwortung Ihrer Anfrage.</p>
+            <p><strong>Datenschutz in Kürze:</strong> Ihre Angaben werden erst beim Absenden übertragen – über eine Serverfunktion bei unserem Hoster Netlify an den E-Mail-Dienstleister Resend, der die Nachricht an das Postfach des PhishLab-Projektteams bei L-mobile zustellt. Zweck ist ausschließlich die Beantwortung Ihrer Anfrage.</p>
             <p>PhishLab speichert die Anfrage nicht in einer Datenbank und protokolliert weder Text noch Adresse. Die E-Mail verbleibt im Empfängerpostfach, bis sie nach Erledigung gelöscht wird; beim Dienstleister gelten dessen Aufbewahrungsfristen. <Link to="/datenschutz#kontakt">Ausführliche Datenschutzhinweise</Link></p>
           </div>
         </div>

@@ -96,7 +96,7 @@ describe('Wissen und Bibliothek', () => {
     const user = userEvent.setup();
     renderApp('/szenarien');
     await user.selectOptions(screen.getByLabelText('Ergebnis'), 'legitim');
-    expect(screen.getByText('30 Szenarien gefunden.')).toBeInTheDocument();
+    expect(screen.getByText('55 Szenarien gefunden.')).toBeInTheDocument();
   });
 
   it('unbekannte Routen zeigen 404', () => {
@@ -107,27 +107,19 @@ describe('Wissen und Bibliothek', () => {
   });
 });
 
-describe('Fortschritt und Speicherung', () => {
-  it('speichert nichts ohne Zustimmung, speichert nach Aktivierung, stellt wieder her und löscht', async () => {
+describe('Neuladen setzt alles zurück', () => {
+  it('speichert nichts im Browser und beginnt nach dem Neuladen bei null', async () => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, history: [{ scenarioId: 'sc-001' }], customScenarios: [] }));
     const user = userEvent.setup();
     const { unmount } = renderApp('/training');
+    expect(window.localStorage.getItem(STORAGE_KEY)).toBeNull();
     await user.click(screen.getByRole('button', { name: /Runde starten/ }));
     await user.click(screen.getByRole('button', { name: /^Phishing$/ }));
-    expect(window.localStorage.getItem(STORAGE_KEY)).toBeNull();
-
-    await user.click(screen.getByRole('link', { name: 'Fortschritt' }));
-    await user.click(screen.getByRole('button', { name: 'Dauerhaftes Speichern aktivieren' }));
-    const stored = JSON.parse(window.localStorage.getItem(STORAGE_KEY)!);
-    expect(stored.history).toHaveLength(1);
-    expect(Object.keys(stored.history[0]).sort()).toEqual(['at', 'chosen', 'correct', 'scenarioId']);
+    expect(window.localStorage.length).toBe(0);
     unmount();
 
-    renderApp('/fortschritt');
-    expect(screen.getByText(/Gespeichert sind 1 Antworten/)).toBeInTheDocument();
-    await user.click(screen.getByRole('button', { name: /Gespeicherte Daten löschen/ }));
-    await user.click(screen.getByRole('button', { name: 'Ja, endgültig löschen' }));
-    expect(window.localStorage.getItem(STORAGE_KEY)).toBeNull();
-    expect(screen.getByText(/aus diesem Browser gelöscht/)).toBeInTheDocument();
+    renderApp('/');
+    expect(screen.getByText('bearbeitete Übungen').previousSibling).toHaveTextContent('0');
   });
 });
 
@@ -155,10 +147,10 @@ describe('Editor', () => {
     await user.click(screen.getByLabelText('Phishing und Social Engineering verstehen'));
     expect(screen.getByRole('article', { name: /Mein Testfall/ })).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Szenario speichern' }));
-    expect(screen.getByText(/gespeichert/)).toBeInTheDocument();
+    expect(screen.getByText(/Szenario „Mein Testfall“ gespeichert/)).toBeInTheDocument();
 
     await user.click(screen.getByRole('link', { name: 'Szenarien' }));
-    expect(screen.getByText('61 Szenarien gefunden.')).toBeInTheDocument();
+    expect(screen.getByText('111 Szenarien gefunden.')).toBeInTheDocument();
     expect(screen.getByText('Eigenes Szenario')).toBeInTheDocument();
   });
 });

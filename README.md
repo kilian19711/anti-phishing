@@ -2,17 +2,17 @@
 
 Interaktives Phishing-Awareness- und Lernportal: Nutzer bewerten vollständig **simulierte** E-Mails, SMS und Messenger-Nachrichten, erhalten nach jeder Entscheidung eine konkrete Erklärung und können direkt in passende Wissensartikel wechseln.
 
-> **Unabhängiges Lern- und Portfolio-Projekt – kein offizielles L-mobile-Produkt.** Keine Freigabe oder Unterstützung durch L-mobile. Es werden keine L-mobile-Logos verwendet.
+> **Ausbildungsprojekt bei L-mobile** – Lern- und Portfolio-Projekt, **kein offizielles L-mobile-Produkt**. Es werden keine L-mobile-Logos verwendet (nur nach Freigabe als Datei im Repo).
 
 ## Funktionsumfang
 
 | Bereich | Inhalt |
 |---|---|
 | Dashboard | Kennzahlen der aktuellen Sitzung, Themenfortschritt, nächste Empfehlung |
-| Training | Realistische Mail-Client-Ansicht (Absender mit Avatar, Anhänge mit Dateityp-Symbol, HTML-Mail-Optik, klickbare Links mit URL-Anzeige in der Statusleiste – ein Klick öffnet nur ein simuliertes Browserfenster in PhishLab), Smartphone-Ansicht für SMS/Messenger, Kurze Runde (5), Standard (10), vollständiger Modus (alle 60), Filter nach Thema/Schwierigkeit/Artikel, optionale Sicherheitsangabe, Modus „Hinweise markieren“, Zurück/Weiter/Überspringen/Abbrechen, ausführliche Auswertung, „Falsch beantwortete erneut üben“ |
+| Training | Realistische Mail-Client-Ansicht (Absender mit Avatar, Anhänge mit Dateityp-Symbol, HTML-Mail-Optik, klickbare Links mit URL-Anzeige in der Statusleiste – ein Klick öffnet nur ein simuliertes Browserfenster in PhishLab), Smartphone-Ansicht für SMS/Messenger, Kurze Runde (5), Standard (10), vollständiger Modus (alle 110), Filter nach Thema/Schwierigkeit/Artikel, optionale Sicherheitsangabe, Modus „Hinweise markieren“, Zurück/Weiter/Überspringen/Abbrechen, ausführliche Auswertung, „Falsch beantwortete erneut üben“ |
 | Wissen | 19 Artikel (je ca. 800–1.200 Wörter), Suche, Themen-/Zielgruppenfilter, Lesezeit aus echter Wortzahl, Inhaltsübersicht, Checkliste, passende Quizfälle, „Quiz zu diesem Thema starten“, verwandte Artikel, Brotkrümel, „Zurück zum Quiz“ |
-| Szenarien | Bibliothek aller 60 Fälle (30 Phishing / 30 legitim) mit Filtern nach Thema, Schwierigkeit, Nachrichtentyp, Kanal, Ergebnis; Detailansicht mit Lernziel, Musterlösung, Hinweisen, Handlungsempfehlung, Artikeln |
-| Fortschritt | Nach Thema und Schwierigkeit; optionales Speichern auf dem Gerät mit Anzeigen, JSON-Export und vollständigem Löschen |
+| Szenarien | Bibliothek aller 110 Fälle (55 Phishing / 55 legitim) mit Filtern nach Thema, Schwierigkeit, Nachrichtentyp, Kanal, Ergebnis; Detailansicht mit Lernziel, Musterlösung, Hinweisen, Handlungsempfehlung, Artikeln |
+| Fortschritt | Nach Thema und Schwierigkeit – nur für die aktuelle Sitzung; **beim Neuladen beginnt alles bei null**, damit jede Person am selben Gerät neu üben kann |
 | Szenario-Editor | Formular mit Live-Vorschau, Validierung mit verständlichen Fehlermeldungen, JSON-Import/-Export mit Schema-Prüfung (lokale Demo-Funktion, kein Login) |
 | Kontakt | Barrierearmes Formular, Versand ausschließlich serverseitig über Netlify Function + Resend |
 | Datenschutz / Über | Tatsächlicher Datenfluss, Speicherorte, Löschung, offene Prüfpunkte |
@@ -39,7 +39,7 @@ Quiz und Wissensbereich funktionieren ohne API-Schlüssel. Das Kontaktformular b
 - **React Router** (einzige Laufzeit-Abhängigkeit neben React): echte URLs wie `/wissen/spf-dkim-dmarc`. Weil alle Pfade dieselbe `index.html` brauchen, enthält `netlify.toml` einen **SPA-Fallback**.
 - **@fontsource-variable/inter, …/jetbrains-mono**: Schriftarten werden mitgebaut und vom eigenen Server geladen – keine Anfragen an Google Fonts.
 - **Kein Markdown-Paket**: Artikel werden mit einem kleinen eigenen Parser (`src/lib/markdown.ts`) in React-Elemente umgewandelt – ohne `innerHTML`, also ohne XSS-Risiko.
-- **Zustand mit `useReducer` + Context**: Fortschritt liegt standardmäßig nur im Arbeitsspeicher. `localStorage` wird erst nach ausdrücklicher Zustimmung benutzt (`src/lib/storage.ts`, mit Fallback, falls blockiert).
+- **Zustand mit `useReducer` + Context**: Fortschritt liegt ausschließlich im Arbeitsspeicher. Es wird nichts im Browser gespeichert; nach dem Neuladen startet alles neu.
 - **Fisher-Yates-Shuffle** mit `crypto.getRandomValues` (`src/lib/shuffle.ts`): gleichverteilt, keine Duplikate; identische Reihenfolge wie in der Vorrunde wird verworfen.
 - **Dev-Abhängigkeiten**: Vitest + Testing Library + jsdom (Tests), ESLint + jsx-a11y (Code- und Barrierefreiheitsregeln), `@netlify/functions` (Typen).
 
@@ -48,7 +48,7 @@ Quiz und Wissensbereich funktionieren ohne API-Schlüssel. Das Kontaktformular b
 ```
 src/
   types/content.ts         Datenschema für Szenarien und Artikel (dokumentiert)
-  data/scenarios/          60 Szenarien (part1–4.ts)
+  data/scenarios/          110 Szenarien (part1–8.ts)
   data/articles/           19 Artikel + Abschnitt „Häufige Missverständnisse“
   data/content.test.ts     Inhaltsprüfung: Anzahl, Balance, IDs, Links, Pflichtfelder, Wortzahl, Abschnitte
   lib/                     Logik ohne UI: quiz, shuffle, validation, marking, stats, storage, markdown, content
@@ -81,7 +81,9 @@ Der Versand läuft **nur serverseitig** über `netlify/functions/contact.ts`. Sc
 | `CONTACT_FROM_EMAIL` | verifizierte Absenderadresse bei Resend, z. B. `PhishLab <kontakt@ihre-domain.de>` |
 | `RESEND_API_KEY` | API-Schlüssel (nur serverseitig) |
 
-3. Neu deployen. Die Kontaktseite fragt `GET /.netlify/functions/contact` ab und zeigt an, ob der Versand eingerichtet ist.
+   Für dieses Projekt: `CONTACT_RECIPIENT_EMAIL` = `kilian.ulmer@l-mobile.com`. Die Adresse steht bewusst nicht im Code, damit sie nicht öffentlich auf GitHub bzw. im Browser-Code auslesbar ist.
+   Tipp zu Resend: Ohne eigene verifizierte Domain erlaubt Resend nach aktuellem Kenntnisstand nur den Versand an die E-Mail-Adresse des eigenen Resend-Kontos, mit Absender `onboarding@resend.dev`. Legen Sie das Resend-Konto daher mit der Empfängeradresse an oder verifizieren Sie eine eigene Domain (eine Firmendomain nur mit Zustimmung der IT). Bitte in der Resend-Dokumentation prüfen.
+3. Neu deployen – **über das GitHub-Repository**. Beim manuellen Hochladen des `dist`-Ordners (Netlify Drop) wird die Kontakt-Function nicht mit veröffentlicht. Die Kontaktseite fragt `GET /.netlify/functions/contact` ab und zeigt an, ob der Versand eingerichtet ist.
 
 Verhalten: Fehlt eine Variable, antwortet die Function mit `503 not_configured` und das Formular zeigt klar „nicht versendet“. Erfolg wird nur angezeigt, wenn Resend die Annahme mit einer Nachrichten-ID bestätigt. Validierung im Browser **und** auf dem Server (Pflichtfelder, Längenlimits, E-Mail-Format, Themenliste), Entfernen von Zeilenumbrüchen in einzeiligen Feldern (Header-Injection), Honeypot-Feld und Mindest-Ausfüllzeit von 3 s statt Captcha-Drittanbieter. Geloggt werden nur anonyme Ereigniscodes (`sent`, `not_configured`, `provider_error:…`), nie Inhalte oder Adressen. Keine Datenbank, keine automatische Antwort. Der Provider ist über das Interface `MailProvider` austauschbar.
 
@@ -98,7 +100,7 @@ Alles ist in `netlify.toml` hinterlegt (inkl. SPA-Fallback und Sicherheits-Heade
 ## Datenschutz- und Sicherheitsgrenzen
 
 - Kein Tracking, keine Cookies, keine externen Schriften/Skripte/Bilder (im Browser geprüft: keine Anfragen an fremde Hosts).
-- Fortschritt standardmäßig nur im Arbeitsspeicher; optionales Speichern im `localStorage` unter `phishlab:v1` mit minimalen Feldern (Szenario-ID, Antwort, richtig/falsch, Zeitpunkt, eigene Szenarien); Anzeigen, Export, Löschen unter „Fortschritt“.
+- Fortschritt nur im Arbeitsspeicher, kein `localStorage`, keine Cookies; Neuladen setzt alles zurück. Alte Daten einer früheren Version (`phishlab:v1`) werden beim Start entfernt.
 - Alle Inhalte sind erfunden; Domains nur `.example`. Simulierte Links/Anhänge öffnen ausschließlich Erklärungen.
 - Kein Versand von Trainingsmails, keine Klickerfassung, keine Passworteingaben.
 - Die Datenschutzhinweise beschreiben den technischen Datenfluss, sind aber **nicht rechtlich geprüft**. Vor öffentlicher oder betrieblicher Nutzung zu klären: verantwortliche Stelle/Impressum, Rechtsgrundlage für das Kontaktformular, Auftragsverarbeitungsverträge und Serverstandorte (Netlify, Resend), Aufbewahrungsfristen im Empfängerpostfach, ggf. Datenschutzbeauftragte und Mitbestimmung. Dieses Projekt ist keine Rechtsberatung und nicht DSGVO-zertifiziert.
@@ -112,7 +114,7 @@ Alles ist in `netlify.toml` hinterlegt (inkl. SPA-Fallback und Sicherheits-Heade
 
 Tatsächlich ausgeführt:
 
-- `npm test`: **134 Tests bestanden** – u. a. 60 Szenarien schema-valide, 30/30 Balance, eindeutige IDs/Titel/Texte, nur `.example`-Domains, alle Artikelverknüpfungen gültig, 19 Artikel mit 780–1.400 Wörtern und Pflichtabschnitten, jeder Artikel mit Quizfällen; Shuffle-Gleichverteilung, Runden ohne Duplikate, vollständiger Modus, Filter + Zufall; Markier-Auswertung; Editor-Validierung, JSON-Import; Kontakt-Function (Mock-Erfolg, ungültige Eingaben, Längen, Honeypot, Zeitprüfung, fehlende Konfiguration, Providerfehler, Header-Injection, keine Inhalte im Log); UI-Abläufe (Dashboard → Runde → Feedback → Artikel → zurück zum Quiz → Ergebnis, Abbruch, Markier-Modus, Suche, Filter, 404, Speichern/Wiederherstellen/Löschen, Editor, Kontakt).
+- `npm test`: **185 Tests bestanden** – u. a. 110 Szenarien schema-valide, 55/55 Balance, eindeutige IDs/Titel/Texte, nur `.example`-Domains, alle Artikelverknüpfungen gültig, 19 Artikel mit 780–1.400 Wörtern und Pflichtabschnitten, jeder Artikel mit Quizfällen; Shuffle-Gleichverteilung, Runden ohne Duplikate, vollständiger Modus, Filter + Zufall; Markier-Auswertung; Editor-Validierung, JSON-Import; Kontakt-Function (Mock-Erfolg, ungültige Eingaben, Längen, Honeypot, Zeitprüfung, fehlende Konfiguration, Providerfehler, Header-Injection, keine Inhalte im Log); UI-Abläufe (Dashboard → Runde → Feedback → Artikel → zurück zum Quiz → Ergebnis, Abbruch, Markier-Modus, Suche, Filter, 404, Neuladen setzt alles zurück, Editor, Kontakt).
 - `npm run lint`, `npm run typecheck`, `npm run build`: ohne Fehler.
 - Browser-Prüfung (Chromium via Playwright, `vite preview`) bei 320 px und 1440 px Breite auf 12 Routen plus Quiz/Feedback: kein horizontales Scrollen, keine Anfragen an fremde Hosts, erster Tab-Stopp ist „Zum Inhalt springen“, axe-core (WCAG 2.0/2.1/2.2 A/AA-Regeln) ohne Befund. Einmalig meldete axe einen Kontrastfehler an `.btn-primary`, der in 15 Wiederholungen nicht reproduzierbar war (rechnerischer Kontrast ca. 7,6:1; vermutlich während der Farbtransition gemessen).
 
