@@ -93,6 +93,7 @@ export default function TrainingRound() {
             marks={round.marks[scenario.id] ?? []}
             onToggleMark={(seg) => dispatch({ type: 'toggleMark', scenarioId: scenario.id, segment: seg })}
             revealMarks={round.markMode && Boolean(answer)}
+            answered={Boolean(answer)}
           />
         </div>
 

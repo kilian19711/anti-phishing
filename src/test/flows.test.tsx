@@ -13,7 +13,7 @@ describe('Vertikaler Ablauf', () => {
   it('Dashboard → Runde → Antwort → Feedback → Artikel → zurück zum Quiz → Ergebnis', async () => {
     const user = userEvent.setup();
     renderApp('/');
-    expect(screen.getByRole('heading', { level: 1, name: /Willkommen/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /Phishing erkennen/ })).toBeInTheDocument();
     await user.click(screen.getByRole('link', { name: 'Training starten' }));
     await user.click(screen.getByLabelText('Kurze Runde (5 Fälle)'));
     await user.click(screen.getByRole('button', { name: /Runde starten/ }));
@@ -44,9 +44,13 @@ describe('Vertikaler Ablauf', () => {
   it('simulierter Link öffnet nur eine interne Erklärung', async () => {
     const user = userEvent.setup();
     renderApp('/szenarien/sc-001');
-    await user.click(screen.getByRole('button', { name: /Gebühr jetzt bezahlen/ }));
+    const link = screen.getByRole('link', { name: /Gebühr jetzt bezahlen/ });
+    expect(link).toHaveAttribute('title', 'https://paket-zahlung.example/verify');
+    await user.click(link);
     expect(screen.getByText(/Dieser Link führt nirgendwohin/)).toBeInTheDocument();
-    expect(screen.getByText('paket-zahlung.example', { selector: 'strong' })).toBeInTheDocument();
+    expect(screen.getByText('Hier wäre es gefährlich geworden')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Zurück zur Nachricht' }));
+    expect(screen.queryByText(/Dieser Link führt nirgendwohin/)).not.toBeInTheDocument();
   });
 
   it('Abbruch einer Runde mit Bestätigung', async () => {

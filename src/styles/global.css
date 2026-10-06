@@ -232,49 +232,6 @@ legend { padding: 0 6px; font-weight: 600; }
 
 .filters { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); align-items: end; }
 
-/* ---------- Simulierter Posteingang ---------- */
-.mail {
-  border: 1px solid var(--border-strong); border-radius: var(--radius-lg); background: #f6f7f9; color: #1d2230;
-  overflow: hidden; box-shadow: var(--shadow);
-}
-.mail a { color: #1a5bc4; }
-.mail-banner {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 14px;
-  background: #2b2350; color: #ece8ff; font-size: 0.84rem; font-weight: 600;
-}
-.mail-banner svg { width: 16px; height: 16px; }
-.mail-head { padding: 14px 18px; border-bottom: 1px solid #dde1e8; background: #fff; display: grid; gap: 4px; }
-.mail-subject { font-size: 1.12rem; font-weight: 700; margin: 0 0 4px; color: #11151f; }
-.mail-meta { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; font-size: 0.92rem; }
-.mail-meta dt { color: #5b6272; }
-.mail-meta dd { margin: 0; min-width: 0; }
-.mail-address { font-family: var(--font-mono); font-size: 0.86rem; color: #2f3646; }
-.mail-time { font-family: var(--font-mono); font-size: 0.86rem; color: #5b6272; }
-.mail-body { padding: 18px; background: #fff; }
-.mail-body p { margin: 0 0 0.8em; }
-.mail-body p:last-child { margin-bottom: 0; }
-.mail.sms .mail-body, .mail.messenger .mail-body { background: #eef1f6; }
-.bubble { background: #fff; border: 1px solid #dde1e8; border-radius: 14px 14px 14px 4px; padding: 12px 14px; max-width: 560px; }
-.bubble + .bubble { margin-top: 8px; }
-.mail-extra { padding: 0 18px 18px; background: #fff; display: grid; gap: 10px; }
-.mail.sms .mail-extra, .mail.messenger .mail-extra { background: #eef1f6; }
-.sim-link {
-  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border-radius: 8px;
-  border: 1px solid #b8c4da; background: #eaf1ff; color: #123e8c; font: inherit; font-weight: 600; cursor: pointer; text-align: left;
-}
-.sim-link:hover { background: #dbe7ff; }
-.sim-attachment {
-  display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 14px; border-radius: 8px;
-  border: 1px solid #cfd5e0; background: #f4f6f9; color: #1d2230; font: inherit; cursor: pointer; text-align: left;
-}
-.sim-attachment:hover { background: #e9edf3; }
-.sim-attachment svg, .sim-link svg { width: 18px; height: 18px; flex: none; }
-.sim-explain {
-  border: 1px solid #c9bdfc; background: #f3f0ff; color: #261b55; border-radius: 8px; padding: 12px 14px; font-size: 0.93rem;
-}
-.sim-explain p { margin: 0 0 6px; }
-.sim-explain p:last-child { margin: 0; }
-
 /* Markierbare Stellen */
 .markable {
   display: inline; font: inherit; color: inherit; text-align: left; background: transparent; border: 0; padding: 1px 2px;

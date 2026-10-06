@@ -9,7 +9,7 @@ Interaktives Phishing-Awareness- und Lernportal: Nutzer bewerten vollständig **
 | Bereich | Inhalt |
 |---|---|
 | Dashboard | Kennzahlen der aktuellen Sitzung, Themenfortschritt, nächste Empfehlung |
-| Training | Kurze Runde (5), Standard (10), vollständiger Modus (alle 60), Filter nach Thema/Schwierigkeit/Artikel, optionale Sicherheitsangabe, Modus „Hinweise markieren“, Zurück/Weiter/Überspringen/Abbrechen, ausführliche Auswertung, „Falsch beantwortete erneut üben“ |
+| Training | Realistische Mail-Client-Ansicht (Absender mit Avatar, Anhänge mit Dateityp-Symbol, HTML-Mail-Optik, klickbare Links mit URL-Anzeige in der Statusleiste – ein Klick öffnet nur ein simuliertes Browserfenster in PhishLab), Smartphone-Ansicht für SMS/Messenger, Kurze Runde (5), Standard (10), vollständiger Modus (alle 60), Filter nach Thema/Schwierigkeit/Artikel, optionale Sicherheitsangabe, Modus „Hinweise markieren“, Zurück/Weiter/Überspringen/Abbrechen, ausführliche Auswertung, „Falsch beantwortete erneut üben“ |
 | Wissen | 19 Artikel (je ca. 800–1.200 Wörter), Suche, Themen-/Zielgruppenfilter, Lesezeit aus echter Wortzahl, Inhaltsübersicht, Checkliste, passende Quizfälle, „Quiz zu diesem Thema starten“, verwandte Artikel, Brotkrümel, „Zurück zum Quiz“ |
 | Szenarien | Bibliothek aller 60 Fälle (30 Phishing / 30 legitim) mit Filtern nach Thema, Schwierigkeit, Nachrichtentyp, Kanal, Ergebnis; Detailansicht mit Lernziel, Musterlösung, Hinweisen, Handlungsempfehlung, Artikeln |
 | Fortschritt | Nach Thema und Schwierigkeit; optionales Speichern auf dem Gerät mit Anzeigen, JSON-Export und vollständigem Löschen |

@@ -244,7 +244,7 @@ export default function Editor() {
         </form>
         <aside className="editor-preview stack" aria-labelledby="vorschau">
           <h2 id="vorschau" style={{ marginTop: 0 }}>Live-Vorschau</h2>
-          {previewOk ? <MailView scenario={scenario} headingLevel={3} /> : <p className="card muted">Die Vorschau erscheint, sobald Absendername und Nachricht ausgefüllt sind.</p>}
+          {previewOk ? <MailView scenario={scenario} headingLevel={3} answered /> : <p className="card muted">Die Vorschau erscheint, sobald Absendername und Nachricht ausgefüllt sind.</p>}
         </aside>
       </div>
     </div>

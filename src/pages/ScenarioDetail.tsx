@@ -28,7 +28,7 @@ export default function ScenarioDetail() {
         {isCustom && <span className="badge badge-sim">Eigenes Szenario (lokal)</span>}
       </div>
       <div className="quiz-layout">
-        <MailView scenario={s} />
+        <MailView scenario={s} answered />
         <div className="stack">
           <section className="card">
             <h2 style={{ marginTop: 0 }}>Lernziel</h2>

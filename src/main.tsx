@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import './styles/global.css';
+import './styles/modern.css';
 import App from './App';
 import { AppStateProvider } from './state/AppState';
 
