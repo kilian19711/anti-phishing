@@ -5,10 +5,10 @@ export default function About() {
   return (
     <div className="page-narrow">
       <PageHeader title="Über das Projekt">
-        <p>PhishLab ist ein interaktives Lernportal zum Erkennen von Phishing und legitimen Nachrichten – entstanden als Ausbildungsprojekt (Fachinformatik Systemintegration) bei L-mobile.</p>
+        <p>PhishLab ist ein interaktives Lernportal zum Erkennen von Phishing und legitimen Nachrichten – entstanden als internes Projekt bei L-mobile.</p>
       </PageHeader>
-      <Notice kind="info" title="Ausbildungsprojekt bei L-mobile – kein offizielles L-mobile-Produkt">
-        <p>PhishLab wurde im Rahmen der Ausbildung bei L-mobile als Lern- und Portfolio-Projekt entwickelt. Es ist kein Produkt von L-mobile und wird von L-mobile weder freigegeben noch unterstützt. Die Farbgestaltung ist von der Markenwelt lediglich inspiriert; offizielle Logos werden nicht verwendet.</p>
+      <Notice kind="info" title="Internes Projekt bei L-mobile – kein offizielles L-mobile-Produkt">
+        <p>PhishLab ist ein internes Lern- und Awareness-Projekt bei L-mobile. Es ist kein Produkt von L-mobile und wird von L-mobile weder freigegeben noch unterstützt. Die Farbgestaltung ist von der Markenwelt lediglich inspiriert; offizielle Logos werden nicht verwendet.</p>
       </Notice>
       <div className="card stack" style={{ marginTop: 16 }}>
         <h2 style={{ marginTop: 0 }}>Grundsätze</h2>

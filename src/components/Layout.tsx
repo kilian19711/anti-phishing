@@ -52,7 +52,7 @@ export function Layout({ children }: { children: ReactNode }) {
         </button>
         <Link to="/" className="wordmark" aria-label="PhishLab – zur Startseite">
           <Logo className="wordmark-mark" />
-          <span className="wordmark-text"><span>Phish<span className="accent">Lab</span></span><span className="wordmark-sub">Ausbildungsprojekt bei L-mobile</span></span>
+          <span className="wordmark-text"><span>Phish<span className="accent">Lab</span></span><span className="wordmark-sub">Internes Projekt bei L-mobile</span></span>
         </Link>
         <span className="topbar-note">Lernportal mit simulierten Nachrichten · keine echten Daten</span>
       </header>
@@ -82,7 +82,7 @@ export function Layout({ children }: { children: ReactNode }) {
         </main>
         <footer className="site-footer">
           <p style={{ margin: 0 }}>
-            PhishLab · Ausbildungsprojekt bei L-mobile – Lern- und Portfolio-Projekt, kein offizielles L-mobile-Produkt.
+            PhishLab · Internes Projekt bei L-mobile – Lern- und Portfolio-Projekt, kein offizielles L-mobile-Produkt.
           </p>
           <nav aria-label="Rechtliches und Informationen">
             <ul>

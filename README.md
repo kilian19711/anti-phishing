@@ -2,7 +2,7 @@
 
 Interaktives Phishing-Awareness- und Lernportal: Nutzer bewerten vollständig **simulierte** E-Mails, SMS und Messenger-Nachrichten, erhalten nach jeder Entscheidung eine konkrete Erklärung und können direkt in passende Wissensartikel wechseln.
 
-> **Ausbildungsprojekt bei L-mobile** – Lern- und Portfolio-Projekt, **kein offizielles L-mobile-Produkt**. Es werden keine L-mobile-Logos verwendet (nur nach Freigabe als Datei im Repo).
+> **Internes Projekt bei L-mobile** – Lern- und Portfolio-Projekt, **kein offizielles L-mobile-Produkt**. Es werden keine L-mobile-Logos verwendet (nur nach Freigabe als Datei im Repo).
 
 ## Funktionsumfang
 
@@ -108,7 +108,7 @@ Alles ist in `netlify.toml` hinterlegt (inkl. SPA-Fallback und Sicherheits-Heade
 ## Design
 
 - App-Shell nach den vorgegebenen Nische-OS-Dark-UI-Werten (Hintergrund `#0d0f14`, Flächen `#13161e`, Karten `#1a1e2a`, Rahmen `#252a38`, Akzente `#4f8ef7`/`#7c5df9`, Status Grün/Rot/Amber, Text `#e8eaf0`/`#9ca3af`, Inter + JetBrains Mono). Im Repository gab es keine Nische-OS-Vorlage.
-- L-mobile-inspirierte Ebene: Cyan-Blau `#2aa9e0` (Markenakzent, aktive Navigation) und Grün `#6cb33f` (Hauptaktionen). **Diese Werte sind aus einem Screenshot der L-mobile-Website abgeschätzt, nicht offiziell.** Website, Corporate-Design-Seite und Richtlinien-PDF waren aus der Entwicklungsumgebung nicht abrufbar (Netzwerkrichtlinie). Es wurde kein Logo verwendet oder nachgezeichnet; PhishLab nutzt eine eigene Wortmarke. Falls freigegebene Assets und offizielle Werte vorliegen, lassen sie sich zentral in `src/styles/global.css` (`--brand`, `--action`) eintragen.
+- L-mobile-inspirierte Ebene: Cyan-Blau `#2aa9e0` (Markenakzent, aktive Navigation) und dunkleres Blau `#0b74b0` (Hauptaktionen, weiße Schrift mit ausreichendem Kontrast). Grün bleibt nur als Status „legitim/richtig“. **Diese Werte sind aus einem Screenshot der L-mobile-Website abgeschätzt, nicht offiziell.** Website, Corporate-Design-Seite und Richtlinien-PDF waren aus der Entwicklungsumgebung nicht abrufbar (Netzwerkrichtlinie). Es wurde kein Logo verwendet oder nachgezeichnet; PhishLab nutzt eine eigene Wortmarke. Falls freigegebene Assets und offizielle Werte vorliegen, lassen sie sich zentral in `src/styles/global.css` (`--brand`, `--action`) eintragen.
 
 ## Prüfergebnisse (Stand dieser Version)
 

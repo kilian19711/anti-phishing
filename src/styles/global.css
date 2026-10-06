@@ -14,15 +14,15 @@
   --primary: #4f8ef7;
   --secondary: #7c5df9;
   --brand: #2aa9e0;          /* inspiriertes Cyan-Blau */
-  --action: #6cb33f;         /* inspiriertes Grün für Hauptaktionen */
-  --action-hover: #7cc44e;
+  --action: #0b74b0;         /* L-mobile-inspiriertes Blau für Hauptaktionen (weiße Schrift, Kontrast ≥ 4,5:1) */
+  --action-hover: #095f92;
   --success: #22c55e;
   --danger: #ef4444;
   --danger-text: #f87171;    /* hellere Variante für ausreichenden Textkontrast */
   --warning: #f59e0b;
   --text: #e8eaf0;
   --muted: #9ca3af;
-  --on-action: #0b1206;
+  --on-action: #ffffff;
   --focus: #ffd34d;
   --radius-sm: 6px;
   --radius: 10px;

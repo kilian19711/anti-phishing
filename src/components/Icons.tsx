@@ -39,8 +39,8 @@ export function Logo({ className }: { className?: string }) {
       <rect width="32" height="32" rx="7" fill="#1a1e2a" stroke="#353c50" />
       <path d="M7 10h18v12H7z" fill="none" stroke="#2aa9e0" strokeWidth="2" />
       <path d="M7 10l9 7 9-7" fill="none" stroke="#2aa9e0" strokeWidth="2" />
-      <circle cx="24" cy="22" r="5" fill="#6cb33f" />
-      <path d="M21.8 22l1.6 1.6 2.8-3" fill="none" stroke="#0b1206" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="24" cy="22" r="5" fill="#2aa9e0" />
+      <path d="M21.8 22l1.6 1.6 2.8-3" fill="none" stroke="#ffffff" strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   );
 }
