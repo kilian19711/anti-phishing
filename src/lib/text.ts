@@ -1,6 +1,6 @@
 export function countWords(text: string): number {
   return text
-    .replace(/[#>*`\-]/g, ' ')
+    .replace(/[#>*`-]/g, ' ')
     .split(/\s+/)
     .filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
 }

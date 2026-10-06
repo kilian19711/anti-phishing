@@ -65,5 +65,7 @@ export function parseMarkdown(src: string): Block[] {
 }
 
 export function tableOfContents(blocks: Block[]): { id: string; text: string }[] {
-  return blocks.filter((b): b is Extract<Block, { type: 'h2' }> => b.type === 'h2').map((b) => ({ id: b.id, text: b.text }));
+  const out: { id: string; text: string }[] = [];
+  for (const b of blocks) if (b.type === 'h2') out.push({ id: b.id, text: b.text });
+  return out;
 }
